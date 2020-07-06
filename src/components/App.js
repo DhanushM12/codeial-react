@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { fetchPosts } from '../actions/posts';
-import { Home, Navbar, Page404 } from './';
-
-const Login = () => <div>Login</div>;
-
-const SignUp = () => <div>SignUp</div>;
+import { Home, Navbar, Page404, Login, SignUp } from './';
 
 //type on rcc to get the class
 class App extends React.Component {
