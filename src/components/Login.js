@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import login from '../actions/auth';
+
+import { login } from '../actions/auth';
 
 class Login extends Component {
   constructor(props) {
     super(props);
     // this.emailInputRef = React.createRef();
-    //this.passwordInputRef = React.createRef();
+    // this.passwordInputRef = React.createRef();
     this.state = {
       email: '',
       password: '',
@@ -14,28 +15,29 @@ class Login extends Component {
   }
 
   handleEmailChange = (e) => {
-    //console.log(e.target.value);
     this.setState({
       email: e.target.value,
     });
   };
+
   handlePasswordChange = (e) => {
-    //console.log(e.target.value);
     this.setState({
       password: e.target.value,
     });
   };
 
-  handleSubmitForm = (e) => {
+  handleFormSubmit = (e) => {
     e.preventDefault();
-    //console.log('this.emailInputRef', this.emailInputRef);
-    //console.log('this.passwordInputRef', this.passwordInputRef);
+    // console.log('this.emailInputRef', this.emailInputRef);
+    // console.log('this.passwordInputRef', this.passwordInputRef);
     console.log('this.state', this.state);
     const { email, password } = this.state;
+
     if (email && password) {
       this.props.dispatch(login(email, password));
     }
   };
+
   render() {
     const { error, inProgress } = this.props.auth;
     return (
@@ -47,7 +49,7 @@ class Login extends Component {
             type="email"
             placeholder="Email"
             required
-            //ref={this.emailInputRef}
+            // ref={this.emailInputRef}
             onChange={this.handleEmailChange}
             value={this.state.email}
           />
@@ -57,18 +59,18 @@ class Login extends Component {
             type="password"
             placeholder="Password"
             required
-            //ref={this.passwordInputRef}
+            // ref={this.passwordInputRef}
             onChange={this.handlePasswordChange}
             value={this.state.password}
           />
         </div>
         <div className="field">
           {inProgress ? (
-            <button onClick={this.handleSubmitForm} disabled={inProgress}>
-              Logging In...
+            <button onClick={this.handleFormSubmit} disabled={inProgress}>
+              Logging in...
             </button>
           ) : (
-            <button onClick={this.handleSubmitForm} disabled={inProgress}>
+            <button onClick={this.handleFormSubmit} disabled={inProgress}>
               Log In
             </button>
           )}
@@ -83,5 +85,4 @@ function mapStateToProps(state) {
     auth: state.auth,
   };
 }
-
 export default connect(mapStateToProps)(Login);
