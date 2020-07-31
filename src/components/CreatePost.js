@@ -14,6 +14,10 @@ class CreatePost extends Component {
   handleOnClick = () => {
     //dispatch an action to create a post
     this.props.dispatch(createPost(this.state.content));
+    // clear post
+    this.setState({
+      comment: '',
+    });
   };
   //to update the post content
   handleChange = (e) => {
